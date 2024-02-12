@@ -1,0 +1,17 @@
+<h1>Список объектов:</h1>
+
+<div class="objectlist">
+  @for (object of objects; track object.id) {
+  <a
+    class="object"
+    [routerLink]="['/objectlist', object.id]"
+    [queryParams]="{
+      title: object.title,
+        description: object.description,
+    }"
+  >
+    <span> id: {{ object.id }}</span>
+    <span>title: {{ object.title }}</span>
+  </a>
+  }
+</div>

@@ -1,0 +1,33 @@
+.objectlist {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  max-width: 35rem;
+  background-color: #ff0081;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+.object {
+  text-decoration: none;
+  outline: none;
+  padding: 20px;
+  &:link {
+    color: white;
+  }
+  &:visited {
+    color: white;
+  }
+  &:focus {
+    border-bottom: 1px solid;
+    color: #265301;
+    background: #bae498;
+  }
+  &:hover {
+    border-bottom: 1px solid;
+    color: #265301;
+    background: #cdfeaa;
+  }
+  &:active {
+    background: #265301;
+    color: #cdfeaa;
+  }
+}

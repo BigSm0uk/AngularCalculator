@@ -1,0 +1,65 @@
+<div class="my-calculator">
+  <h2>Калькулятор</h2>
+  <ng-container *ngFor="let group of calcGroups; let i = index">
+    <div class="inputBlock">
+      <select
+        class="my-calculator_input"
+        [(ngModel)]="group.firstValue.modificator"
+      >
+        @for(modificator of calcModifieres | keyvalue; track modificator.value){
+        <option [value]="modificator.value">{{ modificator.value }}</option>
+        }
+      </select>
+      <input
+        class="my-calculator_input"
+        type="number"
+        [(ngModel)]="group.firstValue.value"
+      />
+      <select class="my-calculator_input" [(ngModel)]="group.operation">
+        @for(operation of calcOperation | keyvalue; track operation.value){
+        <option [value]="operation.value">{{ operation.value }}</option>
+        }
+      </select>
+      <select
+        class="my-calculator_input"
+        [(ngModel)]="group.secondValue.modificator"
+      >
+        @for(modificator of calcModifieres | keyvalue; track modificator.value){
+        <option [value]="modificator.value">{{ modificator.value }}</option>
+        }
+      </select>
+      <input
+        class="my-calculator_input"
+        type="number"
+        [(ngModel)]="group.secondValue.value"
+      />
+      <button (click)="removeGroup(i)" *ngIf="i !== 0">del</button>
+    </div>
+    <select
+      class="my-calculator_input"
+      [(ngModel)]="operationsBetweenGroups[i]"
+      *ngIf="operationsBetweenGroups.length > i"
+    >
+      @for(operation of calcOperation | keyvalue; track operation.value){
+      <option [value]="operation.value">{{ operation.value }}</option>
+      }
+    </select>
+  </ng-container>
+  <span class="my-calculator_result"
+    >Результат:
+    <span>{{
+      result ? (result | number : "1.0-3") : "Нажмите рассчитать!"
+    }}</span></span
+  >
+  <div class="my-calculator_history">
+    <span class="my-calculator_history_title">Итория операций:</span>
+    <span
+      class="my-calculator_history_value"
+      *ngFor="let obj of history; let i = index"
+      >{{ i + 1 }}) {{ obj }}</span
+    >
+    <br />
+  </div>
+  <button class="bubbly-button" (click)="calcGroup()">Рассчитать</button>
+  <button class="bubbly-button" (click)="addGroup()">Добавить группу</button>
+</div>
